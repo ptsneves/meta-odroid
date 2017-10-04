@@ -32,4 +32,4 @@ do_deploy () {
 addtask deploy before do_build after do_compile
 
 PACKAGE_ARCH = "${MACHINE_ARCH}"
-COMPATIBLE_MACHINE  = "(odroid-xu3|odroid-xu4|odroid-xu3-lite)"
+COMPATIBLE_MACHINE  = "(odroid-xu3|odroid-xu4|odroid-xu3-lite|odroid-xu4s)"
