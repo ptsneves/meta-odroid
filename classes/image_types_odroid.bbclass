@@ -20,11 +20,6 @@ UBOOT_B1_POS ?= "1"
 BOOTDD_VOLUME_ID ?= "${MACHINE}"
 
 # Set alignment to 1MB [in KiB]
-#IMAGE_ROOTFS_ALIGNMENT_odroid-xu = "4096"
-#IMAGE_ROOTFS_ALIGNMENT_odroid-xu3 = "${IMAGE_ROOTFS_ALIGNMENT_odroid-xu}"
-#IMAGE_ROOTFS_ALIGNMENT_odroid-xu3-lite = "${IMAGE_ROOTFS_ALIGNMENT_odroid-xu}"
-#IMAGE_ROOTFS_ALIGNMENT_odroid-xu4 = "${IMAGE_ROOTFS_ALIGNMENT_odroid-xu}"
-#IMAGE_ROOTFS_ALIGNMENT_odroid-c1 = "4096"
 IMAGE_ROOTFS_ALIGNMENT_odroid-c2 = "1024"
 
 SDIMG_ROOTFS_TYPE ?= "ext4"
@@ -50,6 +45,7 @@ SDCARD_GENERATION_COMMAND_odroid-xu4= "generate_odroid_xu_sdcard"
 SDCARD_GENERATION_COMMAND_odroid-xu3-lite= "generate_odroid_xu_sdcard"
 SDCARD_GENERATION_COMMAND_odroid-c1= "generate_odroid_c1_sdcard"
 SDCARD_GENERATION_COMMAND_odroid-c2= "generate_odroid_c2_sdcard"
+SDCARD_GENERATION_COMMAND_odroid-xu4s= "generate_odroid_xu_sdcard"
 
 generate_odroid_c1_sdcard () {
 	case "${IMAGE_BOOTLOADER}" in
