@@ -8,7 +8,8 @@ SRC_URI = "git://git.kernel.org/pub/scm/linux/kernel/git/stable/linux-stable.git
 O_KERNEL_CONFIG_odroid-xu3  = "odroid-xu3"
 O_KERNEL_CONFIG_odroid-xu4  = "odroid-xu3"
 O_KERNEL_CONFIG_odroid-xu3-lite  = "odroid-xu3"
+O_KERNEL_CONFIG_odroid-xu4s  = "odroid-xu4s"
 
 require linux-stable.inc
 
-COMPATIBLE_MACHINE = "(odroid-xu3|odroid-xu4|odroid-xu3-lite)"
+COMPATIBLE_MACHINE = "(odroid-xu3|odroid-xu4|odroid-xu3-lite|odroid-xu4s)"
