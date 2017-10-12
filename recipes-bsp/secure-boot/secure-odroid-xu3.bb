@@ -24,9 +24,9 @@ do_compile[noexec] = "1"
 do_deploy () {
     install -d ${DEPLOY_DIR_IMAGE}
     install -m 755  ${S}/boot.ini ${DEPLOY_DIR_IMAGE}
-    install -m 755  ${S}/bl1.bin.hardkernel ${DEPLOY_DIR_IMAGE}
-    install -m 755  ${S}/bl2.bin.hardkernel ${DEPLOY_DIR_IMAGE}
-    install -m 755  ${S}/tzsw.bin.hardkernel ${DEPLOY_DIR_IMAGE}
+    install -m 755  ${S}/bl1.bin.hardkernel ${DEPLOYDIR}
+    install -m 755  ${S}/bl2.bin.hardkernel ${DEPLOYDIR}
+    install -m 755  ${S}/tzsw.bin.hardkernel ${DEPLOYDIR}
 }
 
 addtask deploy before do_build after do_compile

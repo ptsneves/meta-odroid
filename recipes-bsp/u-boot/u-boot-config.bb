@@ -34,17 +34,17 @@ do_install () {
     fi
 }
 
+inherit deploy
+addtask deploy before do_package after do_install
+
 do_deploy () {
-    install -d  ${DEPLOY_DIR_IMAGE}
+    install -d  ${DEPLOYDIR}
     if [ -n "${UBOOT_ENV}" ]
     then
-        install -m 644 ${D}/${UBOOT_ENV_BINARY} ${DEPLOY_DIR_IMAGE}/${UBOOT_ENV_IMAGE}
-        rm -f ${DEPLOYDIR}/${UBOOT_ENV_BINARY} ${DEPLOY_DIR_IMAGE}/${UBOOT_ENV_SYMLINK}
-        ln -sf ${UBOOT_ENV_IMAGE} ${DEPLOY_DIR_IMAGE}/${UBOOT_ENV_BINARY}
-        ln -sf ${UBOOT_ENV_IMAGE} ${DEPLOY_DIR_IMAGE}/${UBOOT_ENV_SYMLINK}
+        install -m 644 ${D}/${UBOOT_ENV_BINARY} ${DEPLOYDIR}/${UBOOT_ENV_IMAGE}
+        ln -sf ${DEPLOYDIR}/${UBOOT_ENV_IMAGE} ${DEPLOYDIR}/boot.scr
     fi
 }
-addtask deploy before do_package after do_install
 
 PACKAGE_ARCH = "${MACHINE_ARCH}"
 COMPATIBLE_MACHINE = "(odroid-c1|odroid-c2|odroid-xu3|odroid-xu4|odroid-xu3-lite)"
