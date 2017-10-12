@@ -177,6 +177,7 @@ IMAGE_CMD_sdcard () {
 
     DTS_BASE_NAME=`basename ${KERNEL_DEVICETREE} | awk -F "." '{print $1}'`
     UBOOT_SCRIPT_KERNEL=`echo ${UBOOT_KENREL_NAME} | awk '{print tolower($0)}'`
+    export MTOOLS_SKIP_CHECK=1
     mcopy -i ${WORKDIR}/boot.img -s ${DEPLOY_DIR_IMAGE}/${KERNEL_IMAGETYPE}-${MACHINE}.bin ::/${UBOOT_SCRIPT_KERNEL}
     mcopy -i ${WORKDIR}/boot.img -s ${DEPLOY_DIR_IMAGE}/${KERNEL_IMAGETYPE}-${DTS_BASE_NAME}.dtb ::/${DTS_BASE_NAME}.dtb
     mcopy -i ${WORKDIR}/boot.img -s ${DEPLOY_DIR_IMAGE}/${UBOOT_SCRIPT} ::/${UBOOT_SCRIPT}
