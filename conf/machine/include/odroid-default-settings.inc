@@ -17,13 +17,11 @@ PREFERRED_PROVIDER_virtual/bootloader ?= "u-boot"
 PREFERRED_PROVIDER_u-boot ?= "u-boot"
 PREFERRED_VERSION_u-boot ?= "2017.09"
 
+UBOOT_ENV  ?= "boot"
 UBOOT_BINARY ?= "u-boot-dtb.bin"
 UBOOT_ENV_SUFFIX ?= "scr"
 
 MACHINE_FEATURES = "serial usbgadget usbhost vfat ext2 alsa screen"
 MACHINE_EXTRA_RRECOMMENDS += " kernel-modules kernel-devicetree"
-EXTRA_IMAGEDEPENDS += "u-boot-config"
-
-USE_BOOTSCR ?=  '1'
 
 IMAGE_FSTYPES_append = " ext4 sdcard"
