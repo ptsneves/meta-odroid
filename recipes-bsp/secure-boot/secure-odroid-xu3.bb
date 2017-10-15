@@ -12,19 +12,29 @@ SRC_URI = "\
     file://tzsw.bin.hardkernel \
     "
 
-inherit deploy
-
 S = "${WORKDIR}"
 
 do_patch[noexec] = "1"
 do_configure[noexec] = "1"
 do_compile[noexec] = "1"
 
+do_install () {
+	install -d ${D}/boot
+	install -m 644 ${B}
+    	install -m 755  ${S}/bl1.bin.hardkernel ${D}/boot
+    	install -m 755  ${S}/bl2.bin.hardkernel ${D}/boot
+    	install -m 755  ${S}/tzsw.bin.hardkernel ${D}/boot
+}
+
+FILES_${PN} = "/boot"
+
+inherit deploy
+
 do_deploy () {
-    install -d ${DEPLOY_DIR_IMAGE}
-    install -m 755  ${S}/bl1.bin.hardkernel ${DEPLOY_DIR_IMAGE}
-    install -m 755  ${S}/bl2.bin.hardkernel ${DEPLOY_DIR_IMAGE}
-    install -m 755  ${S}/tzsw.bin.hardkernel ${DEPLOY_DIR_IMAGE}
+    install -d ${DEPLOYDIR}
+    install -m 755  ${S}/bl1.bin.hardkernel ${DEPLOYDIR}
+    install -m 755  ${S}/bl2.bin.hardkernel ${DEPLOYDIR}
+    install -m 755  ${S}/tzsw.bin.hardkernel ${DEPLOYDIR}
 }
 
 addtask deploy before do_build after do_compile
