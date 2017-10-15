@@ -9,7 +9,6 @@ FILESEXTRAPATHS_prepend := "${THISDIR}/${PN}:"
 DEPENDS = "u-boot atf-native"
 
 SRC_URI = "\
-    file://boot.ini \
     file://aml_encrypt_gxb \
     file://bl2.package  \
     file://bl301.bin \
@@ -18,7 +17,6 @@ SRC_URI = "\
     file://bl1.bin.hardkernel \
     "
 
-inherit deploy
 
 S = "${WORKDIR}"
 
@@ -39,11 +37,18 @@ do_compile () {
 	dd if=${S}/u-boot.bin of=${B}/u-boot.bin_signed bs=512 skip=96
 }
 
+do_install () {
+        install -d ${D}/boot
+        install -m 755  ${S}/bl1.bin.hardkernel ${D}/boot
+}
+
+FILES_${PN} = "/boot"
+
+inherit deploy
 do_deploy () {
-    install -d ${DEPLOY_DIR_IMAGE}
-    install -m 755  ${S}/boot.ini ${DEPLOY_DIR_IMAGE}
-    install -m 755  ${S}/bl1.bin.hardkernel ${DEPLOY_DIR_IMAGE}
-    install -m 755  ${B}/u-boot.bin_signed ${DEPLOY_DIR_IMAGE}/u-boot.bin
+    install -d ${DEPLOYDIR}
+    install -m 755  ${S}/bl1.bin.hardkernel ${DEPLOYDIR}
+    install -m 755  ${B}/u-boot.bin_signed ${DEPLOYDIR}/u-boot.bin
 }
 
 addtask deploy before do_build after do_compile
