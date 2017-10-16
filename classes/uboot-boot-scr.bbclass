@@ -66,17 +66,17 @@ UB_FILE_TITLE ?= "#"
 BASE_ENV_CONFIG = "${S}/base.cmd"
 
 python create_uboot_boot_txt() {
-    if d.getVar("USE_BOOTSCR") != "1":
+    if d.getVar("USE_BOOTSCR", True) != "1":
       return
 
-    if not d.getVar('WORKDIR'):
+    if not d.getVar('WORKDIR', True):
         bb.error("WORKDIR not defined, unable to package")
 
-    cfile = d.getVar('UBOOT_ENV_CONFIG')
+    cfile = d.getVar('UBOOT_ENV_CONFIG', True)
     if not cfile:
         bb.fatal('Unable to read UBOOT_ENV_CONFIG')
 
-    basefile = d.getVar('BASE_ENV_CONFIG')
+    basefile = d.getVar('BASE_ENV_CONFIG', True)
     if not basefile:
         bb.fatal('Unable to read BASE_ENV_CONFIG')
 
@@ -86,56 +86,56 @@ python create_uboot_boot_txt() {
         with open(cfile, 'w') as cfgfile:
 
             # Title for boot.ini on some boards
-            title = localdata.getVar('UB_FILE_TITLE')
+            title = localdata.getVar('UB_FILE_TITLE', True)
             if title:
                 cfgfile.write('%s\n' % title)
 
-            console = localdata.getVar('UBOOT_CONSOLE')
+            console = localdata.getVar('UBOOT_CONSOLE', True)
             if console:
                 cfgfile.write('setenv console \"%s\" \n' % console) 
            
-            loadcmd = localdata.getVar('UB_LOAD_CMD')
+            loadcmd = localdata.getVar('UB_LOAD_CMD', True)
             cfgfile.write('setenv loadcmd \"%s\" \n' % loadcmd) 
 
-            mmcbootdev = localdata.getVar('UBOOT_BOOTDEV')
+            mmcbootdev = localdata.getVar('UBOOT_BOOTDEV', True)
             if mmcbootdev:
                 cfgfile.write('setenv mmcbootdev %s\n' % mmcbootdev )
 
-            mmcbootpart = localdata.getVar('UBOOT_BOOTPART')
+            mmcbootpart = localdata.getVar('UBOOT_BOOTPART', True)
             if mmcbootpart:
                 cfgfile.write('setenv mmcbootpart %s\n' % mmcbootpart )
 
-            mmcrootdev = localdata.getVar('UBOOT_ROOTDEV')
+            mmcrootdev = localdata.getVar('UBOOT_ROOTDEV', True)
             if mmcrootdev:
                 cfgfile.write('setenv mmcrootdev %s\n' % mmcrootdev)
 
-            mmcrootpart = localdata.getVar('UBOOT_ROOTPART')
+            mmcrootpart = localdata.getVar('UBOOT_ROOTPART', True)
             if mmcrootpart :
                 cfgfile.write('setenv mmcrootpart %s\n' % mmcrootpart )
 
             # initrd
-            initrdaddr = localdata.getVar('UB_INITRD_ADDR')
+            initrdaddr = localdata.getVar('UB_INITRD_ADDR', True)
             if initrdaddr:
                 cfgfile.write('setenv initrdaddr  %s\n' % initrdaddr)
 
-            initrd = localdata.getVar('UB_INITRD_NAME')
+            initrd = localdata.getVar('UB_INITRD_NAME', True)
             if initrd:
                 cfgfile.write('setenv initrdname  \"%s\"\n' % initrd) 
 
-            kerneladdr = localdata.getVar('UBOOT_LOADADDR')
+            kerneladdr = localdata.getVar('UBOOT_LOADADDR', True)
             cfgfile.write('setenv kerneladdr \"%s\"\n' % kerneladdr)
 
-            fdtaddr = localdata.getVar('UBOOT_FDT_LOADADDR')
+            fdtaddr = localdata.getVar('UBOOT_FDT_LOADADDR', True)
             cfgfile.write('setenv fdtaddr %s\n' % fdtaddr)
 
-            fdtfile = os.path.basename(localdata.getVar('KERNEL_DEVICETREE'))
+            fdtfile = os.path.basename(localdata.getVar('KERNEL_DEVICETREE', True))
             cfgfile.write('setenv fdtfile \"%s\"\n' % fdtfile)
 
 
-            imgbootcmd = localdata.getVar('UBOOT_BOOT_CMD')
+            imgbootcmd = localdata.getVar('UBOOT_BOOT_CMD', True)
             cfgfile.write('setenv imgbootcmd \"%s\" \n' % imgbootcmd) 
 
-            kernelname = localdata.getVar('UBOOT_KENREL_NAME')
+            kernelname = localdata.getVar('UBOOT_KENREL_NAME', True)
             cfgfile.write('setenv kernelname %s\n' % kernelname)
 
             cfgfile.write('setenv loaddtb     \"${loadcmd} mmc ${mmcbootdev}:${mmcbootpart} ${fdtaddr} ${fdtfile}\"\n')

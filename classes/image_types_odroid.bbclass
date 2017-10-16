@@ -20,10 +20,10 @@ UBOOT_B1_POS ?= "1"
 BOOTDD_VOLUME_ID ?= "${MACHINE}"
 
 # Set alignment to 1MB [in KiB]
-#IMAGE_ROOTFS_ALIGNMENT_odroid-xu = "4096"
-#IMAGE_ROOTFS_ALIGNMENT_odroid-xu3 = "${IMAGE_ROOTFS_ALIGNMENT_odroid-xu}"
-#IMAGE_ROOTFS_ALIGNMENT_odroid-xu3-lite = "${IMAGE_ROOTFS_ALIGNMENT_odroid-xu}"
-#IMAGE_ROOTFS_ALIGNMENT_odroid-xu4 = "${IMAGE_ROOTFS_ALIGNMENT_odroid-xu}"
+IMAGE_ROOTFS_ALIGNMENT_odroid-xu = "4096"
+IMAGE_ROOTFS_ALIGNMENT_odroid-xu3 = "${IMAGE_ROOTFS_ALIGNMENT_odroid-xu}"
+IMAGE_ROOTFS_ALIGNMENT_odroid-xu3-lite = "${IMAGE_ROOTFS_ALIGNMENT_odroid-xu}"
+IMAGE_ROOTFS_ALIGNMENT_odroid-xu4 = "${IMAGE_ROOTFS_ALIGNMENT_odroid-xu}"
 #IMAGE_ROOTFS_ALIGNMENT_odroid-c1 = "4096"
 IMAGE_ROOTFS_ALIGNMENT_odroid-c2 = "1024"
 
@@ -163,7 +163,7 @@ IMAGE_CMD_sdcard () {
     # Create boot partition and mark it as bootable
     parted -s ${SDCARD} unit KiB mkpart primary fat16 ${IMAGE_ROOTFS_ALIGNMENT} $(expr ${BOOT_SPACE_ALIGNED} \+ ${IMAGE_ROOTFS_ALIGNMENT})
     # Create rootfs partition to the end of disk
-    parted -s ${SDCARD} -- unit KiB mkpart primary ext2 $(expr ${BOOT_SPACE_ALIGNED} \+ ${IMAGE_ROOTFS_ALIGNMENT}) -1s
+    parted -s ${SDCARD} -- unit KiB mkpart primary ext4 $(expr ${BOOT_SPACE_ALIGNED} \+ ${IMAGE_ROOTFS_ALIGNMENT}) -1s
     parted ${SDCARD} print
 
     ${SDCARD_GENERATION_COMMAND}
