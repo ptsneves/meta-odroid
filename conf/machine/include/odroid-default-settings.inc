@@ -27,5 +27,3 @@ MACHINE_EXTRA_RRECOMMENDS += " kernel-modules kernel-devicetree"
 EXTRA_IMAGEDEPENDS += "u-boot-config"
 
 USE_BOOTSCR ?=  '1'
-
-IMAGE_FSTYPES_append = " ext4 sdcard"
