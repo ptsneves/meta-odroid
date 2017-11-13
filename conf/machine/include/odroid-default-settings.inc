@@ -8,7 +8,7 @@ XSERVER ?= "xserver-xorg \
            xf86-input-keyboard"
 
 PREFERRED_PROVIDER_virtual/kernel ?= "linux-stable"
-PREFERRED_VERSION_linux-stable ?= "4.13%"
+PREFERRED_VERSION_linux-stable ?= "4.14%"
 LINUX_VERSION_EXTENSION ?= "-odroid"
 
 KERNEL_IMAGETYPE ?= "zImage"
