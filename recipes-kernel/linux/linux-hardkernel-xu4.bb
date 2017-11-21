@@ -18,6 +18,8 @@ SRC_URI = "git://git.kernel.org/pub/scm/linux/kernel/git/stable/linux-stable.git
 
 SRC_URI += "   file://odroidxu4_modules_defconfig.cfg \
   file://rndis_defconfig.cfg \
+  file://wireless.cfg \
+  file://0001-rtl8188eu-no-force-m.patch \
 "
 
 KERNEL_DEFCONFIG_odroid-xu4 = "odroidxu4_modules_defconfig"

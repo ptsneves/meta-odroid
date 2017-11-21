@@ -1,0 +1,24 @@
+From 548c1326a77cf9e146fda71132ed092f76a06fae Mon Sep 17 00:00:00 2001
+From: Paulo Neves <pneves@airborneprojects.com>
+Date: Mon, 20 Nov 2017 21:59:12 +0100
+Subject: [PATCH 1/1] rtl8188eu no force m
+
+---
+ drivers/staging/rtl8188eu/Kconfig | 1 -
+ 1 file changed, 1 deletion(-)
+
+diff --git a/drivers/staging/rtl8188eu/Kconfig b/drivers/staging/rtl8188eu/Kconfig
+index cb836c5..94f3879 100644
+--- a/drivers/staging/rtl8188eu/Kconfig
++++ b/drivers/staging/rtl8188eu/Kconfig
+@@ -1,7 +1,6 @@
+ config R8188EU
+ 	tristate "Realtek RTL8188EU Wireless LAN NIC driver"
+ 	depends on WLAN && USB && CFG80211
+-	depends on m
+ 	select WIRELESS_EXT
+ 	select WEXT_PRIV
+ 	---help---
+-- 
+2.7.4
+
